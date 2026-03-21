@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kh4ns unblocked games</title> <!-- change this to the title of the tab you want -->
+    <title>kh4ns unblocked games</title>
     <link rel="icon" href="new.ico" type="image/x-icon">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,6 +14,7 @@
             background-color: #6a4c9c;
             color: white;
         }
+
         header {
             background-color: #5e3b8f;
             color: white;
@@ -20,6 +22,7 @@
             display: flex;
             justify-content: flex-end;
         }
+
         header button {
             background-color: #7f5f9f;
             border: none;
@@ -30,14 +33,17 @@
             border-radius: 5px;
             margin-left: 20px;
         }
+
         header button:hover {
             background-color: #9b6fcf;
         }
+
         .section {
             padding: 40px;
             text-align: center;
             background-color: #7f5f9f;
         }
+
         .game-card {
             display: inline-block;
             width: 200px;
@@ -49,20 +55,24 @@
             color: white;
             text-align: center;
         }
+
         .game-card img {
             width: 100%;
             height: 160px;
             border-radius: 10px 10px 0 0;
         }
+
         .game-card h3 {
             margin-top: 10px;
         }
+
         footer {
             background-color: #5e3b8f;
             color: white;
             text-align: center;
             padding: 20px 0;
         }
+
         iframe.fullscreen {
             position: fixed;
             top: 0;
@@ -72,52 +82,88 @@
             border: none;
             z-index: 1000;
         }
+
+        .close-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1001;
+            background: red;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
     </style>
+
     <script>
         function openFullscreen(url) {
             const iframe = document.createElement('iframe');
             iframe.src = url;
             iframe.className = 'fullscreen';
             iframe.setAttribute('allowfullscreen', '');
-            document.body.appendChild(iframe);
 
-            iframe.onclick = () => {
-                iframe.remove(); // closes the iframe once you click (remove this if not wanted)
+            const closeBtn = document.createElement('button');
+            closeBtn.innerText = "Close";
+            closeBtn.className = "close-btn";
+
+            closeBtn.onclick = () => {
+                iframe.remove();
+                closeBtn.remove();
             };
+
+            document.body.appendChild(iframe);
+            document.body.appendChild(closeBtn);
         }
     </script>
 </head>
+
 <body>
     <header>
         <button onclick="location.href='index.html'">games</button>
         <button onclick="location.href='apps.html'">apps</button>
     </header>
+
     <div class="section">
-        <h2>Games (more soon)</h2> <!-- change this to what you want above ur games -->
-        <div class="game-card" onclick="openFullscreen('https://krunker.io/')"> 
+        <h2>Games (more soon)</h2>
+
+        <div class="game-card" onclick="openFullscreen('https://krunker.io/')">
             <img src="https://via.placeholder.com/200x160" alt="Krunker.io">
             <h3>Krunker.io</h3>
         </div>
+
         <div class="game-card" onclick="openFullscreen('https://agar.io/')">
             <img src="https://via.placeholder.com/200x160" alt="Agar.io">
             <h3>Agar.io</h3>
         </div>
+
         <div class="game-card" onclick="openFullscreen('https://slither.io/')">
             <img src="https://via.placeholder.com/200x160" alt="Slither.io">
             <h3>Slither.io</h3>
         </div>
+
         <div class="game-card" onclick="openFullscreen('https://shellshock.io/')">
             <img src="https://via.placeholder.com/200x160" alt="Shell Shockers">
             <h3>Shell Shockers</h3>
         </div>
+
         <div class="game-card" onclick="openFullscreen('https://diep.io/')">
             <img src="https://via.placeholder.com/200x160" alt="Diep.io">
             <h3>Diep.io</h3>
-            <!-- copy one of these to add new games, change link to wanted game, and img to a links favicon (icon on the tab) the alt will just show the text if img doesnt work (change the text to work as well) -->
         </div>
+
+        <!-- Drift Hunters (hosted version) -->
+        <div class="game-card" onclick="openFullscreen('/games/drift-hunters/')">
+            <img src="https://via.placeholder.com/200x160" alt="Drift Hunters">
+            <h3>Drift Hunters</h3>
+        </div>
+
     </div>
+
     <footer>
-        <p>&copy; kh4ns unblocked games, made wit luv <3</p> 
+        <p>&copy; kh4ns unblocked games, made wit luv &lt;3</p>
     </footer>
-</body> 
+</body>
 </html>
