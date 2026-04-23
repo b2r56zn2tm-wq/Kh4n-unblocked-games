@@ -17,7 +17,6 @@
 
         header {
             background-color: #5e3b8f;
-            color: white;
             padding: 20px 30px;
             display: flex;
             justify-content: flex-end;
@@ -52,8 +51,12 @@
             margin: 15px;
             border-radius: 10px;
             cursor: pointer;
-            color: white;
             text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .game-card:hover {
+            transform: scale(1.05);
         }
 
         .game-card img {
@@ -64,11 +67,11 @@
 
         .game-card h3 {
             margin-top: 10px;
+            color: white;
         }
 
         footer {
             background-color: #5e3b8f;
-            color: white;
             text-align: center;
             padding: 20px 0;
         }
@@ -88,35 +91,61 @@
             top: 15px;
             right: 15px;
             z-index: 1001;
-            background: red;
+            background: #000;
             border: none;
             color: white;
             padding: 10px 15px;
             cursor: pointer;
             font-size: 16px;
-            border-radius: 5px;
+            border-radius: 8px;
+        }
+
+        .close-btn:hover {
+            background: #333;
         }
     </style>
 
     <script>
+        let currentFrame = null;
+        let currentBtn = null;
+
         function openFullscreen(url) {
+            // remove existing game if open
+            if (currentFrame) currentFrame.remove();
+            if (currentBtn) currentBtn.remove();
+
             const iframe = document.createElement('iframe');
             iframe.src = url;
             iframe.className = 'fullscreen';
             iframe.setAttribute('allowfullscreen', '');
 
             const closeBtn = document.createElement('button');
-            closeBtn.innerText = "Close";
+            closeBtn.innerText = "Close ✕";
             closeBtn.className = "close-btn";
 
-            closeBtn.onclick = () => {
-                iframe.remove();
-                closeBtn.remove();
-            };
+            closeBtn.onclick = closeGame;
 
             document.body.appendChild(iframe);
             document.body.appendChild(closeBtn);
+
+            currentFrame = iframe;
+            currentBtn = closeBtn;
         }
+
+        function closeGame() {
+            if (currentFrame) currentFrame.remove();
+            if (currentBtn) currentBtn.remove();
+
+            currentFrame = null;
+            currentBtn = null;
+        }
+
+        // ESC key to close
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") {
+                closeGame();
+            }
+        });
     </script>
 </head>
 
@@ -154,11 +183,11 @@
             <h3>Diep.io</h3>
         </div>
 
-        <!-- Drift Hunters (hosted version) -->
+        <!-- Drift Hunters -->
         <div class="game-card" onclick="openFullscreen('/games/drift-hunters-main-2/index.html')">
-    <img src="https://via.placeholder.com/200x160" alt="Drift Hunters">
-    <h3>Drift Hunters</h3>
-</div>
+            <img src="https://via.placeholder.com/200x160" alt="Drift Hunters">
+            <h3>Drift Hunters</h3>
+        </div>
 
     </div>
 
